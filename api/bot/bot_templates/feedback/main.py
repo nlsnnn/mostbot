@@ -7,6 +7,7 @@ from aiogram.client.bot import DefaultBotProperties
 from handlers.user import router as user_router
 from database.db import async_main, async_session_factory
 from middlewares.db import DataBaseSession
+from database.global_db import listening
 
 
 async def main(bot_token):
@@ -21,6 +22,9 @@ async def main(bot_token):
 
     dp.update.middleware(DataBaseSession(session_pool=async_session_factory))
 
+    loop = asyncio.get_event_loop()
+    loop.create_task(listening(bot_token))
+
     await bot.delete_webhook()
     await dp.start_polling(bot)
 
@@ -30,5 +34,8 @@ if __name__ == '__main__':
 
     try:
         asyncio.run(main(token))
-    except:
-        print('Exiiiiit')
+    except KeyboardInterrupt:
+        print('KB Exit')
+    except Exception as e:
+        print('Exception exit')
+        print(e)

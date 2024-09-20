@@ -8,15 +8,24 @@ class Bot:
     def __init__(self, bot_token) -> None:
         self.bot_token = bot_token
         self.path_name = f"bot/user_bots/{bot_token.split(':')[0]}"
-        print(self.path_name)
-        os.mkdir(self.path_name)
 
 
     def start_thread(self, template):
-        print('start_thread')
-        copy_tree(f"bot/bot_templates/{template}", self.path_name)
+        if not os.path.isdir(self.path_name):
+            self._make_dir()
+            copy_tree(f"bot/bot_templates/{template}", self.path_name)
+
         new_bot = Thread(target=self._start_bot)
         new_bot.start()
+
+
+    def kill_thread(self):
+        pass
+
+
+    def _make_dir(self):
+        os.mkdir(self.path_name)
+
 
     def _start_bot(self):
         print(f"{self.bot_token=}")
