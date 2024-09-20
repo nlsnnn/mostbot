@@ -12,5 +12,16 @@ class BotSerializer(ModelSerializer):
     def create(self, validated_data):
         bot = Bot(validated_data['token'])
 
+        name, username = bot.get_bot_info()
+        validated_data['name'] = name
+        validated_data['username'] = username
+
         bot.start_thread(validated_data['template'])
         return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        if validated_data['is_active']:
+            bot = Bot(instance.token)
+            bot.start_thread(instance.template)
+
+        return super().update(instance, validated_data)
