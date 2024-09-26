@@ -6,6 +6,7 @@ from aiogram.client.bot import DefaultBotProperties
 
 from handlers.user import router as user_router
 from database.db import async_main, async_session_factory
+from database.listen import task_listening
 from middlewares.db import DataBaseSession
 from database.global_db import listening
 
@@ -26,6 +27,7 @@ async def main(bot_token):
 
     loop = asyncio.get_event_loop()
     loop.create_task(listening(bot_token))
+    loop.create_task(task_listening(async_session_factory, bot))
 
     await bot.delete_webhook()
     await dp.start_polling(bot)

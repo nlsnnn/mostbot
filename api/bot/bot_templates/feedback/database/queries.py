@@ -1,4 +1,4 @@
-from sqlalchemy import select, update, insert, delete, func
+from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from database.models import User, UserCommand
 
@@ -15,6 +15,13 @@ async def orm_add_user(
             User(tg_id=tg_id, name=name)
         )
         await session.commit()
+
+async def orm_get_users(
+        session: AsyncSession,
+):
+    query = select(User.tg_id)
+    result = await session.execute(query)
+    return result.scalars()
 
 
 async def orm_get_command_reponse(

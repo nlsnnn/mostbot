@@ -1,9 +1,9 @@
-from aiogram import Router, F
+from aiogram import Bot, Router, F
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database.queries import orm_add_command, orm_get_command_reponse, orm_add_user, orm_edit_command_response
+from database.queries import orm_add_command, orm_get_command_reponse, orm_add_user, orm_edit_command_response, orm_get_users
 from services import send_message
 
 router = Router()
@@ -41,3 +41,11 @@ async def feedback(msg: Message, bot_token):
         await msg.reply("Твое сообщение отправлено админу!")
     else:
         await msg.reply("Произошла ошибка! Сообщение не было доставлено")
+
+
+async def sender(bot: Bot, session: AsyncSession, message: str):
+    users = await orm_get_users(session)
+
+    for user in users:
+        await bot.send_message(user, message)
+        print('Sended')

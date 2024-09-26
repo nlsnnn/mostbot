@@ -1,4 +1,5 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, Serializer
 
 from .models import Bot as BotModel, Message
 from .creator import Bot
@@ -38,3 +39,11 @@ class MessageSerializer(ModelSerializer):
         validated_data['bot'] = bot
 
         return super().create(validated_data)
+
+
+class TaskSerializer(Serializer):
+    bot_token = serializers.CharField()
+    type = serializers.CharField(max_length=30)
+    message = serializers.CharField(required=False)
+    command = serializers.CharField(max_length=20, required=False)
+    new_response = serializers.CharField(required=False)

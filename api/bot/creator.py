@@ -4,6 +4,8 @@ import requests
 from distutils.dir_util import copy_tree
 from threading import Thread
 
+from .db_queries import BotDataBase
+
 
 class Bot:
     def __init__(self, bot_token) -> None:
@@ -39,3 +41,13 @@ class Bot:
         bot_username = bot_info['username']
 
         return bot_name, bot_username
+
+    def send_task(self, data):
+        try:
+            db_bot = BotDataBase(self.bot_token)
+            db_bot.add_task(data)
+            return True
+
+        except Exception as e:
+            print(e)
+            return False
