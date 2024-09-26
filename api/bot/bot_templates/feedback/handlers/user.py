@@ -4,6 +4,7 @@ from aiogram.types import Message
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.queries import orm_add_command, orm_get_command_reponse, orm_add_user, orm_edit_command_response
+from services import send_message
 
 router = Router()
 
@@ -33,6 +34,10 @@ async def start(msg: Message, session: AsyncSession):
 
 
 @router.message()
-async def feedback(msg: Message):
+async def feedback(msg: Message, bot_token):
+    r = send_message(msg.text, msg.from_user.full_name, msg.chat.id, bot_token)
 
-    await msg.reply("Твое сообщение отправлено админу!")
+    if r:
+        await msg.reply("Твое сообщение отправлено админу!")
+    else:
+        await msg.reply("Произошла ошибка! Сообщение не было доставлено")

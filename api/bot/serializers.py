@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Bot as BotModel
+from .models import Bot as BotModel, Message
 from .creator import Bot
 
 
@@ -25,3 +25,16 @@ class BotSerializer(ModelSerializer):
             bot.start_thread(instance.template)
 
         return super().update(instance, validated_data)
+
+
+class MessageSerializer(ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = Message
+
+    def create(self, validated_data):
+        bot = BotModel.objects.get(token=self.initial_data['bot_token'])
+
+        validated_data['bot'] = bot
+
+        return super().create(validated_data)

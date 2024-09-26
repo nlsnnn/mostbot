@@ -22,6 +22,8 @@ async def main(bot_token):
 
     dp.update.middleware(DataBaseSession(session_pool=async_session_factory))
 
+    dp['bot_token'] = bot_token
+
     loop = asyncio.get_event_loop()
     loop.create_task(listening(bot_token))
 
