@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bots</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+    <header class="bg-blue-75">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="text-xl text-white font-medium ">MostBot</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-lg text-center">
+            <h1 class="text-2xl font-bold sm:text-3xl">Приступайте к работе уже сегодня!</h1>
+            </div>
+
+            <form onsubmit="login(event)" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+                <div>
+                    <label for="email" class="sr-only">Email</label>
+
+                    <div class="relative">
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm focus:outline focus:outline-blue-500"
+                        placeholder="Введите email"/>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="sr-only">Пароль</label>
+
+                    <div class="relative">
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm focus:outline focus:outline-blue-500"
+                        placeholder="Введите пароль"/>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between">
+                    <p class="text-sm text-gray-500">
+                    Нет аккаунта?
+                    <a class="underline" href="register.html">Создать</a>
+                    </p>
+
+                    <button
+                    type="submit"
+                    class="inline-block rounded-lg px-5 py-3 text-sm font-medium text-white bg-blue-500 hover:bg-white hover:text-blue-600 hover:border hover:border-blue-500"
+                    >Войти</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+
+    <script src="auth.js"></script>
+</body>
+</html>
