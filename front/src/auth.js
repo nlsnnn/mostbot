@@ -32,6 +32,7 @@ async function register(event) {
         if (res.ok) {
             const data = await res.json()
             console.log(data)
+            window.location.href = "login.html";
         } else{
             const lol = await res.json()
             console.log(lol)
@@ -72,6 +73,8 @@ async function login(event) {
             localStorage.setItem('authorization', data['auth_token'])
             console.log('OK')
             console.log(localStorage)
+            // window.location.replace("user.html");
+            window.location.href = "user.html";
         } else{
             const errors = await res.json()
             console.log(errors)

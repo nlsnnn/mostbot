@@ -16,3 +16,19 @@
 .bg-blue-75{
     background: var(--blue-75);
 }
+
+.not-auth{
+    display: none;
+}
+
+.not-auth.active{
+    display: block;
+}
+
+.user-info{
+    display: none;
+}
+
+.user-info.active{
+    display: block;
+}
