@@ -139,6 +139,19 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # DRF
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'LOGIN_FIELD': 'email',
