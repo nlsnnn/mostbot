@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+    <header class="bg-blue-75">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="text-xl text-white font-medium ">MostBot</a>
+            <nav class="md:ml-auto ">
+                <a href="login.html" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Войти</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="p-2">
+        <div class="container mx-auto">
+            <div class="templates flex-row flex-wrap md:justify-normal sm:justify-center gap-6">
+                <div class="p-2 flex flex-col justify-around w-56 h-56 border-2 rounded border-blue-600 text-center">
+                    <h2 class="text-2xl font-medium">Обратная связь</h2>
+                    <p class="text-lg text-gray-600">Бот для сбора сообщений от ваших клиентов!</p>
+                    <a onclick="templateChoice(this)"  id="feedback" class="cursor-pointer mx-auto w-24 text-white text-center rounded bg-blue-600 hover:bg-white hover:text-blue-600 hover:border-2 hover:border-blue-600">Выбрать</a>
+                </div>
+                <div class="p-2 flex flex-col justify-around w-56 h-56  border-2 rounded border-blue-600 text-center ">
+                    <h2 class="text-2xl font-medium">Викторина</h2>
+                    <p class="text-lg text-gray-600">Бот-викторина. Создавайте любые опросы!</p>
+                    <p id="sandbox" class="mx-auto w-32 text-center rounded bg-white text-blue-600 border-2 border-blue-600 ">В разработке...</p>
+                </div>
+                <div class="p-2 flex flex-col justify-around w-56 h-56  border-2 rounded border-blue-600 text-center ">
+                    <h2 class="text-2xl font-medium">Песочница</h2>
+                    <p class="text-lg text-gray-600">Создайте бота полностью с нуля!</p>
+                    <p id="sandbox" class="mx-auto w-32 text-center rounded bg-white text-blue-600 border-2 border-blue-600 ">В разработке...</p>
+                </div>
+            </div>
+
+            <div id="popupOverlay" class="overlay-container flex flex-col gap-3 ">
+                <div class="flex flex-col gap-3">
+                    <div role="alert" class="create-success absolute top-20 rounded-xl border w-96 border-gray-100 bg-white p-4">
+                        <div class="flex items-start gap-4">
+                            <span class="text-green-600">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+
+                            <div class="flex-1">
+                            <strong class="block font-medium text-gray-900">Бот запущен</strong>
+
+                            <p class="mt-1 text-sm text-gray-700">Бот успешно создан. <a href="" class="underline" >Управление</a></p>
+                            </div>
+
+                            <button onclick="toggleSuccess()" class="text-gray-500 transition hover:text-gray-600">
+                            <span class="sr-only">Dismiss popup</span>
+                            <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div role="alert" class="create-success absolute top-20 rounded-xl border w-96 border-gray-100 bg-white p-4">
+                        <div class="flex items-start gap-4">
+                            <span class="text-green-600">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+
+                            <div class="flex-1">
+                            <strong class="block font-medium text-gray-900">LOOOOOOL</strong>
+
+                            <p class="mt-1 text-sm text-gray-700">Бот успешно создан. <a href="" class="underline" >Управление</a></p>
+                            </div>
+
+                            <button onclick="toggleSuccess()" class="text-gray-500 transition hover:text-gray-600">
+                            <span class="sr-only">Dismiss popup</span>
+                            <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-box">
+                    <form class="flex flex-col" onsubmit="createBot(event)">
+                        <label class="mb-[10px] text-[16px] text-gray-700 text-left font-medium" for="name">Токен бота:</label>
+                        <input class="p-[10px] mb-[20px] border rounded-lg border-gray-300 w-full" type="text"
+                                placeholder="Введите токен"
+                                id="token" name="token" required>
+                        <button  class="btn-submit bg-blue-600 text-white p-3 rounded-lg cursor-pointer hover:scale-95 hover:transition-all"
+                                type="submit">
+                            Создать
+                            </button>
+                    </form>
+
+                    <button class="btn-close-popup mt-3 p-2 border border-blue-600 rounded-lg text-blue-600" onclick="togglePopup()">Закрыть</button>
+                </div>
+            </div>
+
+
+
+            </div>
+
+            <div class="not-auth text-center flex flex-col gap-3 p-12">
+                <h1 class="text-3xl font-bold">Вы не авторизованы</h1>
+                <a href="login.html" class="text-2xl font-medium over:underline text-blue-600 hover:text-blue-400">Войти</a>
+           </div>
+        </div>
+    </main>
+
+    <script src="templates.js"></script>
+</body>
+</html>
